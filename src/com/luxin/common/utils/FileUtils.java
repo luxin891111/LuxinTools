@@ -7,12 +7,19 @@ import java.io.IOException;
 public class FileUtils {
 
     public static void main(String[] args) {
-        FileUtils fileUtils = new FileUtils();
-        fileUtils.fileCommon();
+        File file = new File("e:\\test");
+
+        // 显示所有文件夹和文件调用
+        // FileUtils.printAllFile(file);
+        // 删除所有文件夹和文件调用
+        // FileUtils.deleteAllFile(file);
+
+        // 文件的基本方法调用
+        // fileUtils.fileCommon();
     }
 
     // 文件的基本方法演示
-    public void fileCommon() {
+    public static void fileCommon() {
         // 创建File对象
         File file1 = new File("e:\\test\\file.txt");
         File file2 = new File("e:\\test\\test1");
@@ -67,6 +74,37 @@ public class FileUtils {
         File file4 = new File("e:\\test\\a.txt");
         Boolean flag3 = file1.renameTo(file4);
         System.out.println("修改文件名: " + flag3);
+    }
+
+    // 打印file路径下所有的文件和文件夹
+    public static void printAllFile(File file) {
+        // 打印当前文件名
+        System.out.println("当前文件名: " + file.getName());
+        // file如果是文件夹递归调用
+        if(file.isDirectory()) {
+            // 获得该文件夹下的所有子文件和子文件夹
+            File[] files = file.listFiles();
+            for(File f : files) {
+                printAllFile(f);
+            }
+        }
+    }
+
+    // 删除对象file下的所有文件和文件夹
+    public static void deleteAllFile(File file) {
+        // 文件直接删除
+        if(file.isFile()) {
+            file.delete();
+        } else {// 文件夹
+                // 获得当前文件夹下的所有子文件和子文件夹
+            File[] files = file.listFiles();
+            // 递归调用
+            for(File f : files) {
+                deleteAllFile(f);
+            }
+            // 删除当前文件夹
+            file.delete();
+        }
     }
 
 }
