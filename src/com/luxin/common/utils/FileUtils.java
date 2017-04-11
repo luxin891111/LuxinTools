@@ -4,10 +4,17 @@ package com.luxin.common.utils;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 public class FileUtils {
 
+    private static Logger logger = Logger.getLogger(FileUtils.class);
+
     public static void main(String[] args) {
-        File file = new File("e:\\test");
+        logger.debug("This is debug message.");
+        logger.info("This is info message.");
+        logger.error("This is error message.");
+        // File file = new File("e:\\test");
 
         // 显示所有文件夹和文件调用
         // FileUtils.printAllFile(file);
